@@ -11,5 +11,5 @@ import { RoomsComponent } from './rooms/rooms.component';
 	styleUrl: './app.component.css',
 })
 export class AppComponent {
-	title = 'hoteliefefdfnventoryapp';
+	title = 'Hide Hotel';
 }

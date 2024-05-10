@@ -1,7 +1,18 @@
 <h1>Welcome to {{ hotelName }}</h1>
-<ul>
-    <li>{{ rooms[0].name }}</li>
-    <li>{{ rooms[1].name }}</li>
-    <li>{{ rooms[2].name }}</li>
-</ul>
-<div> There are {{ NumbsOfRooms }} rooms the hotel</div>
+
+<div *NgIf="rooms.availableRooms > 0" class="RoomList"> <!-- ! Completly hide the element -->
+    <ul>
+        <li>{{ rooms[0].name }}</li>
+        <li>{{ rooms[1].name }}</li>
+        <li>{{ rooms[2].name }}</li>
+    </ul>
+</div>
+
+<div [hidden]="hideAvailableRooms" class="AvailableRooms"> <!-- ! mask the element but it's still accessible from the DOM -->
+    <div> There are {{ roomsDisponibility.availableRooms }} available rooms in the hotel</div>
+</div>
+
+
+<button (click)="toggle()">
+    {{ hideAvailableRooms? 'Show rooms' : 'Hide rooms' }}
+</button>
