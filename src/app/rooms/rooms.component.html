@@ -5,32 +5,7 @@
     <div *ngIf="roomsDisponibility.availableRooms > 1" class="RoomList">
         <!--  *ngIf  simple for loop -->
         <!-- ! Completly hide the element -->
-        <table>
-            <tr>
-                <th>Room Name</th>
-                <th>Number of rooms available</th>
-                <th>Theme of the room</th>
-                <th>Price of the room</th>
-                <th>Room disponibility</th>
-                <th>rating</th>
-                <th>sds</th>
-            </tr>
-            <tr>
-                <!--  *ngFor  simple for loop -->
-                <!-- * <tr *ngFor="let room of roomList | slice: 0:2"  the slice is a pipe would get the element from x to y -->
-            <tr *ngFor="let room of roomList | slice: 0:3"
-                [ngClass]="{'theme-1': room.themes === 'Space', 'theme-2': room.themes === 'Forest', 'theme-3': room.themes === 'Underground' }">
-                <td>{{ room.roomName }}</td>
-                <td>{{ room.numberOfRooms - room.booked }}</td>
-                <td>{{ room.themes | uppercase }}</td>
-                <td>{{ room.price | currency: 'EUR' :'symbol' }}</td>
-                <td> available after the {{ room.checkOutTime | date:'dd MMM yyyy' }}</td>
-                <td> {{ room.rating | number: '1.2-2' }}</td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <!-- {{ roomList | json}} -->
+        <hinv-rooms-list [rooms]="roomList"></hinv-rooms-list>
     </div>
     <div [hidden]="hideAvailableRooms" class="AvailableRooms">
         <!--! mask the element but it's still accessible from the DOM -->

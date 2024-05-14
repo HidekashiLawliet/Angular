@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Room, roomsList } from './rooms';
+import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 
 @Component({
-	selector: 'hinv-rooms',
-	standalone: true,
-	imports: [CommonModule, RouterOutlet],
-	templateUrl: './rooms.component.html',
-	styleUrl: './rooms.component.css',
+    selector: 'hinv-rooms',
+    standalone: true,
+    templateUrl: './rooms.component.html',
+    styleUrl: './rooms.component.css',
+    imports: [CommonModule, RouterOutlet, RoomsListComponent]
 })
 
 
@@ -19,7 +20,7 @@ export class RoomsComponent implements OnInit {
 	randomNumber = 17871263987;
 
 	roomList: roomsList[] = [
-    	{
+		{
 			booked: 2,
 			numberOfRooms: 3,
 			roomName: 'Voyager One room',
@@ -57,6 +58,7 @@ export class RoomsComponent implements OnInit {
 		},
 	];
 
+	
 
 	roomsDisponibility: Room = {
 		totalRooms: 9,
