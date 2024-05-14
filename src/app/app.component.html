@@ -1,2 +1,14 @@
+<!-- <div *ngSwitch = "role"></div> -->
+<div [ngSwitch]="role">
+    <div *ngSwitchCase=" 'User' ">
+        Welcome User!
+    </div>
+    <div *ngSwitchCase=" 'Admin' ">
+        <hinv-rooms> Welcome Admin!</hinv-rooms>
+    </div>
+    <div *ngSwitchDefault>
+        You can't access this page
+    </div>
+</div>
 
 <hinv-rooms></hinv-rooms>
