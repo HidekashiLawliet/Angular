@@ -9,7 +9,7 @@
     </div>
     <div [hidden]="hideAvailableRooms" class="AvailableRooms">
         <!--! mask the element but it's still accessible from the DOM -->
-        <div *ngIf="roomsDisponibility.availableRooms > 1; else noRoomsAvailable" [ngStyle]="{'color': 'green'}">
+        <div *ngIf="roomsDisponibility.availableRooms >= 0; else noRoomsAvailable" [ngStyle]="{'color': 'green'}">
             There are {{ roomsDisponibility.availableRooms }} available rooms in the
             hotel
         </div>
@@ -20,10 +20,11 @@
         </ng-template>
     </div>
     <button (click)="toggle()">
-        {{ hideAvailableRooms ? "Show rooms" : "Hide rooms"}}
+        {{ hideAvailableRooms ? "Show number of available rooms" : "Hide number of available rooms" }}
+
     </button>
     <div>
-        <button (click)="addRoom()">
+        <button (click)="addRoom()" *ngIf="hideAvailableRooms === true">
             Add a room
         </button>
     </div>

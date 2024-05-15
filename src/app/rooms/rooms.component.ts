@@ -22,13 +22,16 @@ export class RoomsComponent implements OnInit {
 	selectedRoom!: roomsList
 
 	selectRoom(room: roomsList) {
-		if (room.available === 0) {
+		if (room.available === false) {
 			window.alert('There is no more room available with this option');
 		} else {
-			room.available -= 1;
-			console.log(room.themes + ' \nnumber of rooms available: ' + room.available);
+			room.available = false;
+			console.log(room.themes + ' \nnumber of rooms available: ' + this.roomList.length);
 		}
+		this.roomsDisponibility.availableRooms = this.roomList.length - 1;
 	}
+
+
 
 	hotelName = 'Hide Hotel';
 	hideAvailableRooms = true;
@@ -36,7 +39,7 @@ export class RoomsComponent implements OnInit {
 
 	roomList: roomsList[] = [
 		{
-			available: 1,
+			available: true,
 			roomName: 'Voyager One room',
 			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
 			price: 10000,
@@ -47,7 +50,7 @@ export class RoomsComponent implements OnInit {
 			rating: 4.826326324,
 		},
 		{
-			available: 1,
+			available: true,
 			roomName: 'Forest room',
 			amenities: 'Air conditionner, parking spot, Bathroom, spa, swimming pool',
 			price: 10200,
@@ -58,7 +61,7 @@ export class RoomsComponent implements OnInit {
 			rating: 5,
 		},
 		{
-			available: 1,
+			available: true,
 			roomName: 'Underground room',
 			amenities: 'Air conditionner, Free Wi-fi (optical fiber), TV, parking spot, TV, Bathroom, jet tub, gym, gym room',
 			price: 10500,
@@ -70,21 +73,16 @@ export class RoomsComponent implements OnInit {
 		},
 	];
 
-	addRoom() {
-		const newRoom: roomsList = {
-			available: 1,
-			roomName: 'Cyberpunk room',
-			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
-			price: 10000,
-			themes: 'Space',
-			photos: 'https://i.pinimg.com/originals/b2/ab/ea/b2abea19989a0694c54c8899023cf3a9.jpg',
-			checkInTime: new Date('11-November-2021'),
-			checkOutTime: new Date('11-december-2022'),
-			rating: 5,
-		};
-		this.roomList.push(newRoom);
-		console.log(newRoom);
-	}
+	totalOfAvailableRoom = this.roomList.length;
+
+	AvailableRoomCounter(): number {
+
+		let index = 0;
+		while () {
+			index += 1;
+		}
+		return index;
+	};
 
 	roomsDisponibility: Room = {
 		totalRooms: 3,
@@ -95,6 +93,21 @@ export class RoomsComponent implements OnInit {
 	toggle() {
 		this.hideAvailableRooms = !this.hideAvailableRooms;
 		this.roomsDisponibility.availableRooms = this.roomList.length;
+	}
+
+	addRoom() {
+		const newRoom: roomsList = {
+			available: true,
+			roomName: 'Cyberpunk room',
+			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
+			price: 10000,
+			themes: 'Space',
+			photos: 'https://i.pinimg.com/originals/b2/ab/ea/b2abea19989a0694c54c8899023cf3a9.jpg',
+			checkInTime: new Date('11-November-2021'),
+			checkOutTime: new Date('11-december-2022'),
+			rating: 5,
+		};
+		this.roomList.push(newRoom);
 	}
 
 
