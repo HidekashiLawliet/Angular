@@ -18,7 +18,7 @@
         <tr *ngFor="let element of rooms | slice: 0:3" [ngClass]="{'theme-1': element.themes === 'Space', 'theme-2':
             element.themes === 'Forest', 'theme-3': element.themes === 'Underground' }">
             <td>{{ element.roomName }}</td>
-            <td>{{ element.numberOfRooms - element.booked }}</td>
+            <td>{{ element.available }}</td>
             <td>{{ element.themes | uppercase }}</td>
             <td>{{ element.price | currency: 'EUR' :'symbol' }}</td>
             <td> available after the {{ element.checkOutTime | date:'dd MMM yyyy' }}</td>

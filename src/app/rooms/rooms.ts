@@ -10,8 +10,8 @@ export interface roomsList {
     price: number;
     themes: string;
     photos: string;
-    booked: number;
     numberOfRooms: number;
+    available: number;
     checkInTime: Date;
     checkOutTime: Date;
     rating: number,

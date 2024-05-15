@@ -18,14 +18,12 @@ export class RoomsComponent implements OnInit {
 	selectedRoom!: roomsList
 
 	selectRoom(room: roomsList) {
-		// console.log(this.selectedRoom.booked += 1);
-		console.log(room.booked);
-		// if (room.booked == 0) {
-		// 	window.alert('There is no more room available with this option');
-		// } else {
-		// 	room.booked -= 1;
-		// 	console.log(room);
-		// }
+		if (room.available === 0) {
+			window.alert('There is no more room available with this option');
+		} else {
+			room.available -= 1;
+			console.log(room.themes + ' \nnumber of rooms available: ' + room.available);
+		}
 	}
 	ngOnInit(): void {
 
@@ -37,7 +35,7 @@ export class RoomsComponent implements OnInit {
 
 	roomList: roomsList[] = [
 		{
-			booked: 2,
+			available: 2,
 			numberOfRooms: 3,
 			roomName: 'Voyager One room',
 			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
@@ -49,7 +47,7 @@ export class RoomsComponent implements OnInit {
 			rating: 4.826326324,
 		},
 		{
-			booked: 2,
+			available: 2,
 			numberOfRooms: 3,
 			roomName: 'Forest room',
 			amenities: 'Air conditionner, parking spot, Bathroom, spa, swimming pool',
@@ -61,7 +59,7 @@ export class RoomsComponent implements OnInit {
 			rating: 5,
 		},
 		{
-			booked: 2,
+			available: 2,
 			numberOfRooms: 3,
 			roomName: 'Underground room',
 			amenities: 'Air conditionner, Free Wi-fi (optical fiber), TV, parking spot, TV, Bathroom, jet tub, gym, gym room',
