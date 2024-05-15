@@ -111,11 +111,11 @@ export class RoomsComponent implements OnInit {
 			checkOutTime: new Date('11-december-2022'),
 			rating: 5,
 		};
-		this.roomList.push(newRoom);
+		// this.roomList.push(newRoom);
+		this.roomList = [...this.roomList, newRoom];
 
 		if (this.hideAvailableRooms === false) {
 			this.hideAvailableRooms = true;
 		}
-		this.hideAvailableRooms = false;
 	}
 }
