@@ -5,7 +5,7 @@
     <div *ngIf="roomsDisponibility.availableRooms > 1" class="RoomList">
         <!--  *ngIf  simple for loop -->
         <!-- ! Completly hide the element -->
-        <hinv-rooms-list [rooms]="roomList"></hinv-rooms-list>
+        <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
     </div>
     <div [hidden]="hideAvailableRooms" class="AvailableRooms">
         <!--! mask the element but it's still accessible from the DOM -->
