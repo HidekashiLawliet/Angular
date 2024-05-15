@@ -29,6 +29,9 @@ export class RoomsComponent implements OnInit {
 			console.log(room.themes + ' \nnumber of rooms available: ' + this.roomList.length);
 		}
 		this.roomsDisponibility.availableRooms = this.roomList.length - 1;
+		if (this.hideAvailableRooms === false) {
+			this.hideAvailableRooms = true;
+		}
 	}
 
 
@@ -85,17 +88,17 @@ export class RoomsComponent implements OnInit {
 		return index;
 	};
 
-	roomsDisponibility: Room = {
-		totalRooms: 3,
-		bookedRooms: 0,
-		availableRooms: 3,
-	};
 
 	toggle() {
 		this.hideAvailableRooms = !this.hideAvailableRooms;
 		this.roomsDisponibility.availableRooms = this.AvailableRoomCounter(this.roomList);
 	}
 
+	roomsDisponibility: Room = {
+		totalRooms: 3,
+		bookedRooms: 0,
+		availableRooms: 3,
+	};
 	addRoom() {
 		const newRoom: roomsList = {
 			available: true,
@@ -109,7 +112,10 @@ export class RoomsComponent implements OnInit {
 			rating: 5,
 		};
 		this.roomList.push(newRoom);
+
+		if (this.hideAvailableRooms === false) {
+			this.hideAvailableRooms = true;
+		}
+		this.hideAvailableRooms = false;
 	}
-
-
 }

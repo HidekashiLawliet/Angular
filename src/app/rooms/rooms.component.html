@@ -7,6 +7,7 @@
         <!-- ! Completly hide the element -->
         <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
     </div>
+
     <div [hidden]="hideAvailableRooms" class="AvailableRooms">
         <!--! mask the element but it's still accessible from the DOM -->
         <div *ngIf="roomsDisponibility.availableRooms >= 0; else noRoomsAvailable" [ngStyle]="{'color': 'green'}">
@@ -19,12 +20,13 @@
             </div>
         </ng-template>
     </div>
+
     <button (click)="toggle()">
         {{ hideAvailableRooms ? "Show number of available rooms" : "Hide number of available rooms" }}
 
     </button>
     <div>
-        <button (click)="addRoom()" *ngIf="hideAvailableRooms === true">
+        <button (click)="addRoom()">
             Add a room
         </button>
     </div>
