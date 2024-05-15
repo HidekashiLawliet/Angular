@@ -20,7 +20,11 @@
         </ng-template>
     </div>
     <button (click)="toggle()">
-        {{ hideAvailableRooms ? "Show rooms" : "Hide rooms" }}
+        {{ hideAvailableRooms ? "Show rooms" : "Hide rooms"}}
     </button>
-
+    <div>
+        <button (click)="addRoom()">
+            Add a room
+        </button>
+    </div>
 </div>

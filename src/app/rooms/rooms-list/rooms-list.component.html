@@ -15,7 +15,7 @@
     <tbody>
         <!--  *ngFor  simple for loop -->
         <!-- * <tr *ngFor="let room of roomList | slice: 0:2"  the slice is a pipe would get the element from x to y -->
-        <tr *ngFor="let element of rooms | slice: 0:3" [ngClass]="{'theme-1': element.themes === 'Space', 'theme-2':
+        <tr *ngFor="let element of rooms" [ngClass]="{'theme-1': element.themes === 'Space', 'theme-2':
             element.themes === 'Forest', 'theme-3': element.themes === 'Underground' }">
             <td>{{ element.roomName }}</td>
             <td>{{ element.available }}</td>
