@@ -75,11 +75,12 @@ export class RoomsComponent implements OnInit {
 
 	totalOfAvailableRoom = this.roomList.length;
 
-	AvailableRoomCounter(): number {
-
+	AvailableRoomCounter(roomList: roomsList[]): number {
 		let index = 0;
-		while () {
-			index += 1;
+		for (const room of roomList) {
+			if (room.available == true) {
+				index += 1;
+			}
 		}
 		return index;
 	};
@@ -92,7 +93,7 @@ export class RoomsComponent implements OnInit {
 
 	toggle() {
 		this.hideAvailableRooms = !this.hideAvailableRooms;
-		this.roomsDisponibility.availableRooms = this.roomList.length;
+		this.roomsDisponibility.availableRooms = this.AvailableRoomCounter(this.roomList);
 	}
 
 	addRoom() {
