@@ -12,7 +12,7 @@ import { Room, roomsList } from '../rooms';
 })
 export class RoomsListComponent implements OnInit, OnChanges {
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log("try");
+		console.log("room list component on changes is called");
 	}
 	selectRoom(room: roomsList) {
 		this.selectedRoom.emit(room);

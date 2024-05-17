@@ -12,7 +12,6 @@ import { RoomsComponent } from './rooms/rooms.component';
 	styleUrl: './app.component.css',
 })
 export class AppComponent {
-	title = 'Hide Hotel';
 
-	role ='Admin';
+	role = 'Admin';
 }
