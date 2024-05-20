@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit, Query, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Room, roomsList } from './rooms';
@@ -18,7 +18,7 @@ import { HeaderComponent } from "../header/header.component";
 export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don't implement DoCheck and  ngOnChanges together in the same component 'cause they do the same thing
 
 	@ViewChild(HeaderComponent) headerComponent!: HeaderComponent; //! ViewChild to see one child component else is ViewChildren
-
+	// @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 	ngAfterViewInit(): void {
 		this.headerComponent.titleHeader = 'Rooms View';
 		console.log(` after view init header Title = to${this.headerComponent.titleHeader}`)
