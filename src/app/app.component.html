@@ -1,15 +1,26 @@
 <!-- <div *ngSwitch = "role"></div> -->
-<div [ngSwitch]="role">
+<!-- <div [ngSwitch]="role">
     <div *ngSwitchCase=" 'User' ">
         Welcome User!
     </div>
     <div *ngSwitchCase=" 'Admin' ">
         <h1> Wekcome Admin!</h1>
-        <hinv-rooms></hinv-rooms>
+        <ng-template #admin></ng-template>
     </div>
     <div *ngSwitchDefault>
         You can't access this page
     </div>
-</div>
+</div> -->
+
+<hinv-rooms>
+
+    <div #name>
+    </div>
+</hinv-rooms>
+
+<!-- <div>
+    <ng-template #admin></ng-template> -->
+<!-- ! invisible template that can help us to load dynamically the component -->
+<!-- </div> -->
 
 <!-- ! will create a child and interct with it thanks to viewChild -->

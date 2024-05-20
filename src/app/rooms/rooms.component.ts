@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit, SimpleChanges, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Room, roomsList } from './rooms';
@@ -15,7 +15,21 @@ import { HeaderComponent } from "../header/header.component";
 })
 
 
-export class RoomsComponent implements OnInit, DoCheck { // ! don't implement DoCheck and  ngOnChanges together in the same component 'cause they do the same thing
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don't implement DoCheck and  ngOnChanges together in the same component 'cause they do the same thing
+
+	@ViewChild(HeaderComponent) headerComponent!: HeaderComponent; //! ViewChild to see one child component else is ViewChildren
+
+	ngAfterViewInit(): void {
+		this.headerComponent.titleHeader = 'Rooms View';
+		console.log(` after view init header Title = to${this.headerComponent.titleHeader}`)
+	}
+	// * with static: true it's means this component is saved to be used in his parent component
+	// ! create a new instance of this component
+	// 	! so now we can acces it in here
+	// ! if it workd, but just include file where the componant is
+	// ! import { HeaderComponent } from "../header/header.component";
+	// ! and add it in import
+
 	ngDoCheck(): void { // ! activated when  a changes happen on the web page
 		console.log('Room component doCheck');
 	}
@@ -24,18 +38,11 @@ export class RoomsComponent implements OnInit, DoCheck { // ! don't implement Do
 	}
 
 	ngOnInit(): void {
-		console.log()
+		console.log
 	}
 
-	@ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
-	// ! create a new instance of this component
-	// 	! so now we can acces it in here
-	// ! if it workd, but just include file where the componant is
-	// ! import { HeaderComponent } from "../header/header.component";
-	// ! and add it in import
-
 	selectedRoom!: roomsList
-	// title = 'Hide Hotel';
+	title = 'Hide Hotel';
 
 	selectRoom(room: roomsList) {
 		if (room.available === false) {

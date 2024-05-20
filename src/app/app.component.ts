@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RoomsComponent } from './rooms/rooms.component';
@@ -11,7 +11,20 @@ import { RoomsComponent } from './rooms/rooms.component';
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
+	@ViewChild('name', { static: true }) name!: ElementRef;
+	ngOnInit(): void {
+		this.name.nativeElement.innerText = 'Hello World';
+	}
 
 	role = 'Admin';
+	// ! load dynamically in <ng-template> 
+	// @ViewChild('admin', { read: ViewContainerRef }) vcr!: ViewContainerRef
+	// ngAfterViewInit(): void {
+	// 	const componentRef = this.vcr.createComponent(RoomsComponent);
+	// 	componentRef.instance.title = 'Admin View';
+	// }
+
+
 }
