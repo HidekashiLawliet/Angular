@@ -1,9 +1,11 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnInit, Query, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, DoCheck, OnChanges, OnDestroy, OnInit, Query, QueryList, SimpleChanges, ViewChild, ViewChildren } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Room, roomsList } from './rooms';
 import { RoomsListComponent } from "./rooms-list/rooms-list.component";
 import { HeaderComponent } from "../header/header.component";
+import { RoomsService } from './services/rooms.service';
+
 
 @Component({
 	selector: 'hinv-rooms',
@@ -15,13 +17,14 @@ import { HeaderComponent } from "../header/header.component";
 })
 
 
-export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don't implement DoCheck and  ngOnChanges together in the same component 'cause they do the same thing
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy {
+	// ! don't implement DoCheck and  ngOnChanges together in the same component 'cause they do the same thing
 
 	@ViewChild(HeaderComponent) headerComponent!: HeaderComponent; //! ViewChild to see one child component else is ViewChildren
-	// @ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
+	@ViewChildren(HeaderComponent) headerChildrenComponent!: QueryList<HeaderComponent>;
 	ngAfterViewInit(): void {
-		this.headerComponent.titleHeader = 'Rooms View';
-		console.log(` after view init header Title = to${this.headerComponent.titleHeader}`)
+		// this.headerComponent.titleHeader = 'Rooms View';
+		// console.log(` after view init header Title = to${this.headerComponent.titleHeader}`)
 	}
 	// * with static: true it's means this component is saved to be used in his parent component
 	// ! create a new instance of this component
@@ -30,6 +33,19 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don
 	// ! import { HeaderComponent } from "../header/header.component";
 	// ! and add it in import
 
+	roomList: roomsList[] = [];
+
+	// roomList = new RoomsService(); // ! wrong things to do, to create a new instance
+	constructor(private roomsService: RoomsService) {
+		this.roomList = this.roomsService.getRooms();
+	}
+	// ! thanks to that our data come from the service file, and cannot be access from the DOM
+	// ! Data structure should always be in a service file; a service is a reusable classe where you can put some business logic
+
+
+	ngOnDestroy(): void {
+
+	}
 	ngDoCheck(): void { // ! activated when  a changes happen on the web page
 		console.log('Room component doCheck');
 	}
@@ -38,7 +54,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don
 	}
 
 	ngOnInit(): void {
-		console.log
+		console.log('ngOnInit');
 	}
 
 	selectedRoom!: roomsList
@@ -59,41 +75,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don
 
 	hideAvailableRooms = true;
 
-	roomList: roomsList[] = [
-		{
-			available: true,
-			roomName: 'Voyager One room',
-			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
-			price: 10000,
-			themes: 'Space',
-			photos: 'https://i.pinimg.com/originals/b2/ab/ea/b2abea19989a0694c54c8899023cf3a9.jpg',
-			checkInTime: new Date('11-November-2021'),
-			checkOutTime: new Date('11-december-2022'),
-			rating: 4.826326324,
-		},
-		{
-			available: true,
-			roomName: 'Forest room',
-			amenities: 'Air conditionner, parking spot, Bathroom, spa, swimming pool',
-			price: 10200,
-			themes: 'Forest',
-			photos: 'https://www.hotels2see.com/sites/default/files/images/rustic-style-luxury-accommodation-hotel-nothofagus-chile.jpg',
-			checkInTime: new Date('11-November-2021'),
-			checkOutTime: new Date('11-december-2022'),
-			rating: 5,
-		},
-		{
-			available: true,
-			roomName: 'Underground room',
-			amenities: 'Air conditionner, Free Wi-fi (optical fiber), TV, parking spot, TV, Bathroom, jet tub, gym, gym room',
-			price: 10500,
-			themes: 'Underground',
-			photos: 'https://i.ytimg.com/vi/uwLQhnyc3Mc/maxresdefault.jpg',
-			checkInTime: new Date('11-November-2021'),
-			checkOutTime: new Date('11-december-2022'),
-			rating: 4.52312351325,
-		},
-	];
+
 
 	totalOfAvailableRoom = this.roomList.length;
 
@@ -106,7 +88,6 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don
 		}
 		return index;
 	};
-
 
 	toggle() {
 		this.hideAvailableRooms = !this.hideAvailableRooms;
@@ -137,4 +118,7 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit { // ! don
 			this.hideAvailableRooms = true;
 		};
 	}
+
+
 }
+

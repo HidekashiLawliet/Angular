@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RoomsComponent } from './rooms/rooms.component';
 import { ContainerComponent } from "./container/container.component";
+import { EmployeeComponent } from "./employee/employee.component";
 
 
 @Component({
@@ -10,13 +11,13 @@ import { ContainerComponent } from "./container/container.component";
 	standalone: true,
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.css',
-	imports: [RoomsComponent, RouterOutlet, CommonModule, ContainerComponent]
+	imports: [RoomsComponent, RouterOutlet, CommonModule, ContainerComponent, EmployeeComponent]
 })
 
 export class AppComponent implements OnInit {
 	@ViewChild('name', { static: true }) name!: ElementRef;
 	ngOnInit(): void {
-		this.name.nativeElement.innerText = 'Hello World';
+		// this.name.nativeElement.innerText = 'Hello World';
 	}
 
 	role = 'Admin';

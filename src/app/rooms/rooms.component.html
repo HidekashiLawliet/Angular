@@ -3,7 +3,7 @@
     <!-- <h1>Welcome to {{ title }}</h1> -->
     <!-- ! <hinv-header></hinv-header> call and display hinv-header -->
     <h2> {{title}} </h2>
-    <div *ngIf="roomsDisponibility.availableRooms > 0" class="RoomList">
+    <div *ngIf="!hideAvailableRooms" class="RoomList">
         <!--  *ngIf  simple for loop -->
         <!-- ! Completly hide the element -->
         <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
