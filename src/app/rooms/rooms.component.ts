@@ -131,6 +131,6 @@ addRoom() {
 
 	if (this.hideAvailableRooms === false) {
 		this.hideAvailableRooms = true;
-	}
+	};
 }
 }
