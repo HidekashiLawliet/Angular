@@ -12,7 +12,6 @@ import { RoomsService } from './services/rooms.service';
 	standalone: true,
 	templateUrl: './rooms.component.html',
 	styleUrl: './rooms.component.css',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	imports: [CommonModule, RouterOutlet, RoomsListComponent, HeaderComponent]
 })
 
@@ -59,6 +58,9 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 
 	selectedRoom!: roomsList
 	title = 'Hide Hotel';
+	hideListRooms = true;
+	hideTextRooms = true;
+	totalOfAvailableRoom = this.roomList.length;
 
 	selectRoom(room: roomsList) {
 		if (room.available === false) {
@@ -68,16 +70,10 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 			console.log(room.themes + ' \nnumber of rooms available: ' + this.roomList.length);
 		}
 		this.roomsDisponibility.availableRooms = this.roomList.length - 1;
-		if (this.hideAvailableRooms === false) {
-			this.hideAvailableRooms = true;
+		if (this.hideTextRooms === false) {
+			this.hideTextRooms = true;
 		}
 	}
-
-	hideAvailableRooms = true;
-
-
-
-	totalOfAvailableRoom = this.roomList.length;
 
 	AvailableRoomCounter(roomList: roomsList[]): number {
 		let index = 0;
@@ -89,36 +85,21 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 		return index;
 	};
 
-	toggle() {
-		this.hideAvailableRooms = !this.hideAvailableRooms;
+	toggleList() {
+		this.hideListRooms = !this.hideListRooms;
 		this.roomsDisponibility.availableRooms = this.AvailableRoomCounter(this.roomList);
 	}
+	toggleText() {
+		this.hideTextRooms = !this.hideTextRooms;
+		this.roomsDisponibility.availableRooms = this.AvailableRoomCounter(this.roomList);
 
+	}
 	roomsDisponibility: Room = {
 		totalRooms: 3,
 		bookedRooms: 0,
 		availableRooms: 3,
 	};
-	addRoom() {
-		const newRoom: roomsList = {
-			available: true,
-			roomName: 'Cyberpunk room',
-			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
-			price: 10000,
-			themes: 'Space',
-			photos: 'https://i.pinimg.com/originals/b2/ab/ea/b2abea19989a0694c54c8899023cf3a9.jpg',
-			checkInTime: new Date('11-November-2021'),
-			checkOutTime: new Date('11-december-2022'),
-			rating: 5,
-		};
-		// this.roomList.push(newRoom);
-		this.roomList = [...this.roomList, newRoom];
 
-		if (this.hideAvailableRooms === false) {
-			this.hideAvailableRooms = true;
-		};
-	}
-
-
+	addRoom = this.roomsService.addRoom;
 }
 

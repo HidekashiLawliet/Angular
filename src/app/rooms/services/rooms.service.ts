@@ -41,6 +41,24 @@ export class RoomsService {
 		},
 	];
 
+	hideTextRooms = true;
+
+	addRoom() {
+		const newRoom: roomsList = {
+			available: true,
+			roomName: 'Cyberpunk room',
+			amenities: 'Air conditionner, Free Wi-fi, parking spot, TV, Bathroom, spa',
+			price: 10000,
+			themes: 'Space',
+			photos: 'https://i.pinimg.com/originals/b2/ab/ea/b2abea19989a0694c54c8899023cf3a9.jpg',
+			checkInTime: new Date('11-November-2021'),
+			checkOutTime: new Date('11-december-2022'),
+			rating: 5,
+		};
+		this.roomList = [...this.roomList, newRoom];
+		this.hideTextRooms = true;
+	};
+
 	constructor() {
 		console.log('RoomsService is created');
 	}

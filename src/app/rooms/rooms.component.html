@@ -3,28 +3,33 @@
     <!-- <h1>Welcome to {{ title }}</h1> -->
     <!-- ! <hinv-header></hinv-header> call and display hinv-header -->
     <h2> {{title}} </h2>
-    <div *ngIf="!hideAvailableRooms" class="RoomList">
+    <div *ngIf="!hideListRooms" class="RoomList">
         <!--  *ngIf  simple for loop -->
         <!-- ! Completly hide the element -->
         <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
     </div>
 
-    <div [hidden]="hideAvailableRooms" class="AvailableRooms">
+    <div [hidden]="hideTextRooms" class="AvailableRooms">
         <!--! mask the element but it's still accessible from the DOM -->
-        <div *ngIf="roomsDisponibility.availableRooms >= 0; else noRoomsAvailable" title="title"
+        <div *ngIf="roomsDisponibility.availableRooms >= 0; else noRoomsAvailableText" title="title"
             [ngStyle]="{'color': 'green'}">
             There are {{ roomsDisponibility.availableRooms }} available rooms in the
             hotel
         </div>
-        <ng-template #noRoomsAvailable>
+        <ng-template #noRoomsAvailableText>
             <div [ngStyle]="{'color': 'red'}">
                 There are no available rooms in the hotel
             </div>
         </ng-template>
     </div>
 
-    <button (click)="toggle()">
-        {{ hideAvailableRooms ? "Show number of available rooms" : "Hide number of available rooms" }}
+    <button (click)="toggleList()">
+        {{ hideListRooms ? "Show rooms list" : "Hide rooms list" }}
+
+    </button>
+
+    <button (click)="toggleText()">
+        {{ hideTextRooms ? "Show number of available rooms" : "Hide number of available rooms" }}
 
     </button>
     <div>
