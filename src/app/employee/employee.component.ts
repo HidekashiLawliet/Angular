@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Self, SkipSelf } from '@angular/core';
 import { EmployeeService } from './employee.service';
+import { RoomsService } from '../rooms/services/rooms.service';
 
 @Component({
 	selector: 'hinv-employee',
@@ -7,12 +8,15 @@ import { EmployeeService } from './employee.service';
 	imports: [],
 	templateUrl: './employee.component.html',
 	styleUrl: './employee.component.css',
-	providers: [EmployeeService],
+	providers: [RoomsService, EmployeeComponent, EmployeeService],
 })
+
 export class EmployeeComponent implements OnInit {
 	empRoll: string = "Admin";
 
-	constructor(private EmployeeService: EmployeeService) { }
+	constructor(@Self() private EmployeeService: EmployeeService) {
+
+	}
 	ngOnInit(): void {
 
 	}

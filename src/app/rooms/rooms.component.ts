@@ -36,11 +36,13 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 
 	// roomList = new RoomsService(); // ! wrong things to do, to create a new instance
 	constructor(private roomsService: RoomsService) {
+	}
+	ngOnInit(): void {
 		this.roomList = this.roomsService.getRooms();
+		console.log('ngOnInit');
 	}
 	// ! thanks to that our data come from the service file, and cannot be access from the DOM
 	// ! Data structure should always be in a service file; a service is a reusable classe where you can put some business logic
-
 
 	ngOnDestroy(): void {
 
@@ -52,9 +54,6 @@ export class RoomsComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy
 		throw new Error('Method not implemented.');
 	}
 
-	ngOnInit(): void {
-		console.log('ngOnInit');
-	}
 
 	selectedRoom!: roomsList
 	title = 'Hide Hotel';
