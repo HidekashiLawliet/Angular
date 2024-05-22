@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Room, roomsList } from '../rooms';
+import { roomsList } from '../rooms';
 
 @Component({
 	selector: 'hinv-rooms-list',

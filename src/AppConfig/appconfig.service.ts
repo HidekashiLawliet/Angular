@@ -1,13 +1,10 @@
 import { InjectionToken } from "@angular/core";
+import { AppConfig } from './appConfig.interface';
+import { environment } from '../environments/environment';
 
-export const APP_SERVICE_CONFIG = new InjectionToken<AppConfig>('AppConfig');
-
-export interface AppConfig {
-    apiEndpoint: string;
-    title: string;
-}
+export const APP_SERVICE_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 export const APP_CONFIG: AppConfig = {
-    apiEndpoint: 'http://localhost:4200',
+    apiEndpoint: environment.apiUrl,
     title: 'Hotel Inventory App',
 };

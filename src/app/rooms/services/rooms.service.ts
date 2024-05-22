@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { roomsList } from '../rooms';
+import { AppConfig } from '../../../AppConfig/appConfig.interface';
+import { APP_SERVICE_CONFIG } from '../../../AppConfig/appconfig.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
 	providedIn: 'root'
@@ -59,9 +62,14 @@ export class RoomsService {
 		this.hideTextRooms = true;
 	};
 
+	// constructor(@Inject(APP_SERVICE_CONFIG) private config: AppConfig) {
+	// 	console.log(this.config.apiEndpoint + ' initialization');
+	// }
+
 	constructor() {
-		console.log('RoomsService is created');
+		console.log(environment.apiUrl + ' initialization');
 	}
+
 
 	getRooms() {
 		return this.roomList;
