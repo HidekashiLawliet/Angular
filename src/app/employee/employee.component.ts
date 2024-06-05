@@ -1,6 +1,6 @@
-import { Component, OnInit, Self, SkipSelf } from '@angular/core';
-import { EmployeeService } from './employee.service';
+import { Component, OnInit, Self } from '@angular/core';
 import { RoomsService } from '../rooms/services/rooms.service';
+import { EmployeeService } from './employee.service';
 
 @Component({
 	selector: 'hinv-employee',

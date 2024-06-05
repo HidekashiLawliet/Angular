@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, OnInit } from '@angular/core';
 import { EmployeeComponent } from '../employee/employee.component';
 
 @Component({

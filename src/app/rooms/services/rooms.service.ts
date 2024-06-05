@@ -1,13 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
-import { roomsList } from '../rooms';
-import { AppConfig } from '../../../AppConfig/appConfig.interface';
-import { APP_SERVICE_CONFIG } from '../../../AppConfig/appconfig.service';
+import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { roomsList } from '../rooms';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class RoomsService {
+
 	roomList: roomsList[] = [
 		{
 			available: true,
@@ -67,9 +66,8 @@ export class RoomsService {
 	// }
 
 	constructor() {
-		console.log(environment.apiUrl + ' initialization');
+		console.log(environment.apiUrl + ' initialization HAAAAAAAAAAA');
 	}
-
 
 	getRooms() {
 		return this.roomList;

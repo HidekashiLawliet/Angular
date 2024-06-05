@@ -1,19 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { APP_CONFIG, APP_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
-import { APP_SERVICE_CONFIG } from '../AppConfig/appconfig.service';
-import { APP_CONFIG } from '../AppConfig/appconfig.service';
+import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
+import { RoomsComponent } from './rooms/rooms.component';
 
 @NgModule({
 	declarations: [
-		AppComponent,
 		RoomsComponent,
 		RoomsListComponent,
 		ContainerComponent,
@@ -31,6 +29,6 @@ import { APP_CONFIG } from '../AppConfig/appconfig.service';
 			useValue: APP_CONFIG
 		}
 	],
-	bootstrap: [HttpClient],
-},)
-export class AppModule { }  
+	bootstrap: [AppComponent],
+})
+export class AppModule { }
